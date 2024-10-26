@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Динамическая форма</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
+
+  <body>
+    <a href='{{url_for("get_data")}}'>Посмотреть данные</a>
+    <form
+      id="main-form"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1100px;
+        margin: auto;
+      "
+      action="{{ url_for('submit_data') }}"
+      method="POST"
+    >
+      <div>
+        <button id="add-input" style="height: 50px" type="button">
+          Добавить input
+        </button>
+        <button style="height: 50px" type="submit">Сохранить</button>
+      </div>
+      <div
+        id="dynamic-inputs"
+        style="
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin: 10px;
+        "
+      >
+        <div>
+          <label for="input_0">#0:</label>
+          <input name="input_0" style="margin-top: 5px" type="text" />
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

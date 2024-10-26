@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Данные</title>
+  </head>
+  <body>
+    <a href='{{url_for("forms")}}'>На главную</a>
+    {%for data in data_list%}
+    <div style="border: 5px solid black; margin: 5px; padding: 20px">
+      <h3>id : {{data["id"]}}</h3>
+      {%for key,value in data["data"].items()%}
+      <p><b>{{key}} </b>: <i>"{{value}}"</i></p>
+      {%endfor%}
+    </div>
+    {%endfor%}
+  </body>
+</html>
