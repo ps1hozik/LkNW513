@@ -4,25 +4,33 @@
 
    `sudo apt install -y python3 python3-venv postgresql nginx`
 
-2. Склонировать репозиторий в папку /home/&lt;user&gt;/LkNW513, перейти в созданную директорию:
+2. Именить права доступа:
 
-   > &lt;user&gt; заменить на своего пользователя
+   > &lt;username&gt; заменить на своего пользователя
 
-   `git clone https://github.com/ps1hozik/LkNW513.git /home/<user>/LkNW513`
+   `sudo usermod -aG www-data <username>`
 
-   `cd /home/<user>/LkNW513`
+   `sudo chown -R www-data:www-data /var/www/`
 
-3. Создать и активировать виртуальное окружение:
+   `sudo chmod -R 770 /var/www/`
+
+3. Склонировать репозиторий в папку /var/www/LkNW513, перейти в созданную директорию:
+
+   `git clone https://github.com/ps1hozik/LkNW513.git /var/www/LkNW513`
+
+   `cd /var/www/LkNW513`
+
+4. Создать и активировать виртуальное окружение:
 
    `python3 -m venv venv`
 
    `source venv/bin/activate`
 
-4. Установить необходимые пакеты:
+5. Установить необходимые пакеты:
 
    `pip install -r requirements.txt`
 
-5. Создать базу даных:
+6. Создать базу даных:
 
    `sudo -i -u postgres`
 
@@ -30,21 +38,15 @@
 
    `CREATE DATABASE forms_db;`
 
-   > &lt;password&gt; заменить на любой пароль
+   > root заменить на любой пароль
 
-   `ALTER USER postgres WITH PASSWORD '<password>';`
+   `ALTER USER postgres WITH PASSWORD 'root';`
 
-6. Изменить права доступа:
-
-   `sudo chown -R www-data:www-data /home/<user>/LkNW513`
-
-   `sudo find /home/<user>/LkNW513 -type d -exec chmod 755 {} \;`
-
-   `sudo find /home/<user>/LkNW513 -type f -exec chmod 644 {} \;`
+   > для выхода нажать два раза CTRL+D
 
 7. Переместить файл config/LkNW513.service в /etc/systemd/system:
 
-   > изменить &lt;password&gt; в 10 строке на ранее созданный для postgres
+   > изменить root в 10 строке если меняли ранее
 
    `sudo mv config/LkNW513.service /etc/systemd/system`
 

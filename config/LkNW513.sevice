@@ -5,10 +5,10 @@ After=network.target
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/home/www/LkNW513
-Environment="PATH=/home/www/LkNW513/venv/bin"
-Environment="DATABASE_URL=postgresql+psycopg2://postgres:<password>@localhost/forms_db" # Заменить <password> на ранее созданный для postgres
-ExecStart=/home/www/LkNW513/venv/bin/gunicorn --workers 3 --bind unix:/home/www/LkNW513/LkNW513.sock wsgi:app
+WorkingDirectory=/var/www/LkNW513
+Environment="PATH=/var/www/LkNW513/venv/bin"
+Environment="DATABASE_URL=postgresql+psycopg2://postgres:root@localhost/forms_db"
+ExecStart=/var/www/LkNW513/venv/bin/gunicorn --workers 3 --bind unix:/var/www/LkNW513/LkNW513.sock wsgi:app
 
 [Install]
 WantedBy=multi-user.target

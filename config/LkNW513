@@ -1,9 +1,9 @@
 server {
     listen 80;
-    server_name localhost;  # для реального домена изменить на нужный домен, например, myapp.com www.myapp.com
+    server_name localhost;
 
     location / {
-        proxy_pass http://unix:/home/www/LkNW513/LkNW513.sock;
+        proxy_pass http://unix:/var/www/LkNW513/LkNW513.sock;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
