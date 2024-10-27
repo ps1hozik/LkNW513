@@ -3,10 +3,18 @@ $(function () {
 
   $("#add-input").click(function () {
     $("#dynamic-inputs").append(`
-            <div>
-                <label for="input_${inputCount}">#${inputCount}:</label>
-                <input name="input_${inputCount}" style="margin-top:5px;" type="text">
-            </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">#${inputCount}:</span>
+        </div>
+        <input
+          name="input_${inputCount}"
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </div>
         `);
     inputCount++;
   });

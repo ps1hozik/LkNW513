@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Данные</title>
-  </head>
-  <body>
-    <a href='{{url_for("forms")}}'>На главную</a>
-    {%for data in data_list%}
-    <div style="border: 5px solid black; margin: 5px; padding: 20px">
-      <h3>id : {{data["id"]}}</h3>
-      {%for key,value in data["data"].items()%}
-      <p><b>{{key}} </b>: <i>"{{value}}"</i></p>
-      {%endfor%}
-    </div>
+{% extends "base.html" %}
+{% block title %}Данные{% endblock %}
+{%block head %}
+{{ super() }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+{%block header %}
+<a
+  href='{{url_for("forms")}}'
+  class="btn btn-secondary btn-sm active w-100"
+  role="button"
+  aria-pressed="true"
+  >На главную</a
+>
+{% endblock %}
+{%block content %}
+<div
+  class="d-flex flex-column bd-highlight mb-3 w-100 text-center"
+  style="margin-left: auto; margin-right: auto"
+>
+  {%for data in data_list%}
+  <div class="p-2 mb-1 border border-5 border-secondar rounded">
+    <h3>id : {{data["id"]}}</h3>
+    {%for key,value in data["data"].items()%}
+    <p><b>{{key}} </b>: <i>"{{value}}"</i></p>
     {%endfor%}
-  </body>
-</html>
+  </div>
+  {%endfor%}
+</div>
+{% endblock %}
